@@ -1,7 +1,7 @@
 package tree
 
 type ITree interface {
-	Traverse(function func(*Node))
+	Traverse(function func(INode))
 }
 
 type INode interface {
