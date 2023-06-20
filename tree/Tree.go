@@ -1,12 +1,12 @@
 package tree
 
 type Tree struct {
-	Root *INode
+	Root *Node
 }
 
 type Node struct {
 	Data     int
-	Children []*INode
+	Children []*Node
 }
 
 func (n Node) GetData() int {
@@ -14,7 +14,13 @@ func (n Node) GetData() int {
 }
 
 func (n Node) GetChildren() []*INode {
-	return n.Children
+	children := make([]*INode, len(n.Children))
+	for i, node := range n.Children {
+		var nn INode
+		nn = *node
+		children[i] = &nn
+	}
+	return children
 }
 
 func (tree *Tree) Traverse(function func(INode)) {
