@@ -14,7 +14,7 @@ func main() {
 	h := new(http.ServeMux)
 
 	h.HandleFunc("/sum", func(rw http.ResponseWriter, req *http.Request) {
-		rw.Header().Set("content-type", "text/json")
+		rw.Header().Set("content-type", "application/json")
 
 		tre, err := getTree(req)
 		if err != nil {
