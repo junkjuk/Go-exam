@@ -1,23 +1,30 @@
 package tree
 
 type BinaryTree struct {
-	Root *INode
+	Root *BinaryNode
 }
 
 type BinaryNode struct {
 	Data  int
-	left  *INode
-	right *INode
+	Left  *BinaryNode
+	Right *BinaryNode
 }
 
 func (n BinaryNode) GetData() int {
 	return n.Data
 }
 
-func (n BinaryNode) GetChildren() []*INode {
-	return []*INode{n.left, n.right}
+func (n BinaryNode) GetChildren() []INode {
+	var childrens []INode
+	if n.Left != nil {
+		childrens = append(childrens, n.Left)
+	}
+	if n.Right != nil {
+		childrens = append(childrens, n.Right)
+	}
+	return childrens
 }
 
 func (tree *BinaryTree) Traverse(function func(INode)) {
-	traverse(*tree.Root, function)
+	traverse(tree.Root, function)
 }

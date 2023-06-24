@@ -7,21 +7,18 @@ import (
 )
 
 func main() {
-	var n1, n2, n3, n4 tree.INode
+	var n1, n2, n3, n4, n5 tree.BinaryNode
 
-	list := tree.Tree{}
-	n3 = tree.Node{Data: 3}
-	n1 = tree.Node{Data: 1}
-	n2 = tree.Node{Data: 2,
-		Children: []*tree.INode{&n3},
-	}
-	n4 = tree.Node{
-		Data:     4,
-		Children: []*tree.INode{&n2, &n1},
-	}
-	list.Root = &n4
+	list := tree.BinaryTree{}
+	n2 = tree.BinaryNode{Data: 2}
+	n4 = tree.BinaryNode{Data: 4}
+	n5 = tree.BinaryNode{Data: 5}
+	n3 = tree.BinaryNode{Data: 3, Left: &n4, Right: &n5}
+	n1 = tree.BinaryNode{Data: 1, Left: &n2, Right: &n3}
 
-	js, _ := json.MarshalIndent(list, "", " ")
+	list.Root = &n1
+
+	js, _ := json.Marshal(list)
 	jsonStr := string(js)
 	fmt.Println(jsonStr)
 	sum := 0

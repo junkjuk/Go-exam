@@ -6,12 +6,20 @@ type ITree interface {
 
 type INode interface {
 	GetData() int
-	GetChildren() []*INode
+	GetChildren() []INode
 }
 
 func traverse(rootNode INode, function func(INode)) {
 	function(rootNode)
 	for _, node := range rootNode.GetChildren() {
-		traverse(*node, function)
+		traverse(node, function)
 	}
+}
+
+func SumTree(tree ITree) int {
+	sum := 0
+	tree.Traverse(func(node INode) {
+		sum += node.GetData()
+	})
+	return sum
 }

@@ -21,10 +21,8 @@ func main() {
 			rw.Write([]byte(err.Error()))
 			return
 		}
-		sum := 0
-		tre.Traverse(func(node tree.INode) {
-			sum += node.GetData()
-		})
+
+		sum := tree.SumTree(tre)
 
 		rw.Write([]byte(strconv.Itoa(sum)))
 	})
