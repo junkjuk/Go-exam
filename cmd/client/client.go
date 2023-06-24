@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-var url = "http://localhost:8090/sum"
+var url = "http://localhost:8090/childmax"
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
