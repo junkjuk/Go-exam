@@ -5,6 +5,37 @@ import (
 	"testing"
 )
 
+func TestBinaryTree_MaxChild(t *testing.T) {
+	type testCase struct {
+		name           string
+		input          BinaryTree
+		expectedResult int
+	}
+	testTable := []testCase{
+		{
+			name:           "test b-node MaxChild with count comparing on 5 nodes",
+			input:          GetBTree5Nodes(),
+			expectedResult: 9,
+		},
+		{
+			name:           "test b-node MaxChild with count comparing on 4 nodes",
+			input:          GetBTree4Nodes(),
+			expectedResult: 7,
+		},
+		{
+			name:           "test b-node MaxChild with count comparing on 3 nodes",
+			input:          GetBTree3Nodes(),
+			expectedResult: 3,
+		},
+	}
+
+	for _, test := range testTable {
+		resTree := MaxChild(test.input)
+		sum := SumTree(resTree)
+		assert.Equal(t, test.expectedResult, sum.GetData(), test.name)
+	}
+}
+
 func TestBinaryNode_count(t *testing.T) {
 	type testCase struct {
 		name           string
@@ -75,8 +106,8 @@ func GetBTree5Nodes() BinaryTree {
 	n2 = BinaryNode{Data: 2}
 	n4 = BinaryNode{Data: 4}
 	n5 = BinaryNode{Data: 5}
-	n3 = BinaryNode{Data: 3, Left: &n4, Right: &n5}
-	n1 = BinaryNode{Data: 1, Left: &n2, Right: &n3}
+	n3 = BinaryNode{Data: 3, Left: &n4, Right: &n2}
+	n1 = BinaryNode{Data: 1, Left: &n5, Right: &n3}
 	tree.Root = &n1
 	return tree
 }
