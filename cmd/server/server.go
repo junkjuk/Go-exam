@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strconv"
 	"strings"
 )
 
@@ -23,8 +22,8 @@ func main() {
 		}
 
 		sum := tree.SumTree(tre)
-
-		rw.Write([]byte(strconv.Itoa(sum)))
+		js, _ := json.Marshal(sum)
+		rw.Write(js)
 	})
 
 	http.ListenAndServe(":8090", h)

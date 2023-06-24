@@ -2,11 +2,13 @@ package tree
 
 type ITree interface {
 	Traverse(function func(INode))
+	GetBasicNode() INode
 }
 
 type INode interface {
 	GetData() int
 	GetChildren() []INode
+	SetData(int)
 }
 
 func traverse(rootNode INode, function func(INode)) {
@@ -16,10 +18,12 @@ func traverse(rootNode INode, function func(INode)) {
 	}
 }
 
-func SumTree(tree ITree) int {
+func SumTree(tree ITree) INode {
 	sum := 0
 	tree.Traverse(func(node INode) {
 		sum += node.GetData()
 	})
-	return sum
+	node := tree.GetBasicNode()
+	node.SetData(sum)
+	return node
 }
