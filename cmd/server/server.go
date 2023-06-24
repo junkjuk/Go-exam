@@ -10,17 +10,17 @@ import (
 func main() {
 	h := new(http.ServeMux)
 
-	h.HandleFunc("/sum", func(rw http.ResponseWriter, req *http.Request) {
+	h.HandleFunc("/childmax", func(rw http.ResponseWriter, req *http.Request) {
 		rw.Header().Set("content-type", "application/json")
 
-		tre, err := parser.GetTree(req.Body)
+		tre, err := parser.GetBinaryTree(req.Body)
 		if err != nil {
 			_, _ = rw.Write([]byte(err.Error()))
 			return
 		}
 
-		sum := tree.SumTree(tre)
-		js, _ := json.Marshal(sum)
+		result := tree.MaxChild(*tre)
+		js, _ := json.Marshal(result)
 		_, _ = rw.Write(js)
 	})
 
